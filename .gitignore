@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*$py.class
+.Python
+env/
+venv/
+.env
+.venv
+pip-log.txt
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+.eggs/
+*.egg
+.cache
+.nx/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Testing
+coverage/
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+
+# Docker
+docker-compose.override.yml
+/data
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Remix specific
+/frontend/build/
+/frontend/.cache/
+/frontend/public/build/
+
+# FastAPI specific
+/backend/static/
+/backend/media/
