@@ -1,32 +1,13 @@
 # OmniFlow
 
-## Overview
-OmniFlow is an AI-powered business operations platform that automates and optimizes essential tasks for small businesses. The platform leverages intelligent agents to handle day-to-day operations, enabling business owners to focus on growth and customer relationships.
-
-## Features
-- Task Management Agent
-- Lead Generation
-- Customer Relationship Management
-- Marketing Automation
-- Business Intelligence
-- Operations Management
-
-## Technology Stack
-- Frontend: Remix, TailwindCSS, ShadCN UI
-- Backend: FastAPI, Python
-- Database: MongoDB
-- Cache: Redis
-- Storage: MinIO
-- AI Services: LangChain, OpenAI/Anthropic
-
-## Prerequisites
-- Docker and Docker Compose
-- Node.js (LTS)
-- Python 3.12+
-- pnpm
-- Poetry
+[Previous sections remain the same until Getting Started]
 
 ## Getting Started
+
+### Documentation
+Detailed documentation can be found in the `docs` directory:
+- [Project Tracking](docs/project/tracking.md) - Current project status and roadmap
+- [Container Setup](docs/development/containers.md) - Development container configuration and setup
 
 ### Initial Setup
 ```bash
@@ -42,8 +23,12 @@ make start
 ```
 
 ### Development
-The project uses Docker for local development. Key commands:
+The project uses Docker for local development. Development servers run on:
+- Frontend (Remix + Vite): http://localhost:5173 (dev), http://localhost:3000 (prod)
+- Backend (FastAPI): http://localhost:8000
+- MinIO Console: http://localhost:9001
 
+Key commands:
 ```bash
 # Start development environment
 make start

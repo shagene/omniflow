@@ -103,7 +103,7 @@
    - Database scaling
    - Service redundancy
 
-## Development Environment
+# Development Environment
 
 ### Required Tools
 - Docker & Docker Compose
@@ -113,19 +113,24 @@
 - Git
 
 ### Services
-- Frontend (Remix): Port 3000
+- Frontend (Remix + Vite): 
+  - Development: Port 5173
+  - Production: Port 3000
 - Backend (FastAPI): Port 8000
 - MongoDB: Port 27017
 - Redis: Port 6379
 - MinIO: Ports 9000, 9001
 - Nginx: Port 80
 
-## Notes & Decisions
-- Using Remix over Next.js for better data handling
-- Implementing ShadCN UI for component library
+### Notes & Decisions
+- Using Remix with Vite for enhanced development experience
+- Development runs on port 5173 with Vite's dev server
+- Production builds will run on port 3000
+- Using ShadCN UI for component library
 - Using Poetry for Python dependency management
 - Docker-based development environment for consistency
 - FastAPI for backend API development
+
 
 ## Resources & Links
 - Project Repository: [GitHub Link]
