@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Sidebar, SidebarContent, SidebarLink } from '../../components/custom/sidebar';
+import { ThemeToggle } from '../theme/theme-toggle';
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -21,22 +22,22 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const navItems = [
     {
       label: "Dashboard",
-      href: "/",
+      href: "/dashboard",
       icon: <LayoutDashboard className="h-5 w-5" />,
     },
     {
       label: "Tasks",
-      href: "/tasks",
+      href: "/dashboard/tasks",
       icon: <ClipboardList className="h-5 w-5" />,
     },
     {
       label: "Analytics",
-      href: "/analytics",
+      href: "/dashboard/analytics",
       icon: <BarChart className="h-5 w-5" />,
     },
     {
       label: "Settings",
-      href: "/settings",
+      href: "/dashboard/settings",
       icon: <Settings className="h-5 w-5" />,
     },
   ];
@@ -67,7 +68,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 className="w-64 rounded-md border border-gray-200 bg-white pl-8 pr-4 py-2 text-sm outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:border-gray-700 dark:bg-gray-800"
               />
             </div>
-            
+            <ThemeToggle/>
             {/* Action Buttons */}
             <Button variant="ghost" size="icon">
               <Bell className="h-5 w-5" />

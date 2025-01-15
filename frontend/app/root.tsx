@@ -6,7 +6,7 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
-import DashboardLayout from "./components/layouts/DashboardLayout";
+import { ThemeProvider } from "./components/theme/theme-provider";
 
 import "./tailwind.css";
 
@@ -33,9 +33,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <ThemeProvider defaultTheme="system">
         {children}
         <ScrollRestoration />
         <Scripts />
+        </ThemeProvider>
       </body>
     </html>
   );
@@ -43,8 +45,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <DashboardLayout>
       <Outlet />
-    </DashboardLayout>
   );
 }

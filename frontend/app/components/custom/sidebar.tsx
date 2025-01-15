@@ -1,13 +1,35 @@
-// app/components/custom/sidebar.tsx
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { type ReactNode, useState, createContext, useContext } from 'react';
-import { cn } from '../../lib/utils';
-import { Link } from '@remix-run/react';
+import { NavLink, useLocation } from '@remix-run/react';
 import { Menu, X } from 'lucide-react';
-import { Sheet, SheetContent, SheetTrigger } from '../../components/ui/sheet';
+import { cn } from '../../lib/utils';
 
 interface SidebarContextProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface SidebarProps {
+  children: ReactNode;
+  className?: string;
+}
+
+interface SidebarContentProps {
+  className?: string;
+  mainNav: ReactNode;
+  bottomNav: ReactNode;
+}
+
+interface LinkProps {
+  label: string;
+  href: string;
+  icon: ReactNode;
+}
+
+interface SidebarLinkProps {
+  link: LinkProps;
+  className?: string;
 }
 
 const SidebarContext = createContext<SidebarContextProps | undefined>(undefined);
@@ -20,19 +42,7 @@ const useSidebar = () => {
   return context;
 };
 
-interface Links {
-  label: string;
-  href: string;
-  icon: ReactNode;
-}
-
-export function Sidebar({ 
-  children, 
-  className 
-}: { 
-  children: ReactNode;
-  className?: string;
-}) {
+export function Sidebar({ children, className }: SidebarProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -44,15 +54,7 @@ export function Sidebar({
   );
 }
 
-export function SidebarContent({ 
-  className,
-  mainNav,
-  bottomNav
-}: {
-  className?: string;
-  mainNav: ReactNode;
-  bottomNav: ReactNode;
-}) {
+export function SidebarContent({ className, mainNav, bottomNav }: SidebarContentProps) {
   const { open, setOpen } = useSidebar();
 
   return (
@@ -136,18 +138,29 @@ export function SidebarContent({
   );
 }
 
-export function SidebarLink({ link, className }: { link: Links; className?: string }) {
+export function SidebarLink({ link, className }: SidebarLinkProps) {
   const { open } = useSidebar();
+  const location = useLocation();
+  const isActive = location.pathname === link.href;
 
   return (
-    <Link
+    <NavLink
       to={link.href}
-      className={cn(
-        "flex items-center gap-3 px-3 py-2 text-gray-700 dark:text-gray-200 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors",
-        className
-      )}
+      className={({ isActive }) =>
+        cn(
+          "flex items-center gap-3 px-3 py-2 rounded-md transition-colors",
+          "text-gray-700 dark:text-gray-200",
+          "hover:bg-gray-200 dark:hover:bg-gray-700",
+          isActive && "bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-blue-400",
+          className
+        )
+      }
     >
-      {link.icon}
+      <span className={cn(
+        isActive ? "text-blue-600 dark:text-blue-400" : "text-gray-700 dark:text-gray-200"
+      )}>
+        {link.icon}
+      </span>
       <span 
         className={cn(
           "text-sm transition-[width] duration-200",
@@ -156,6 +169,6 @@ export function SidebarLink({ link, className }: { link: Links; className?: stri
       >
         {link.label}
       </span>
-    </Link>
+    </NavLink>
   );
 }
